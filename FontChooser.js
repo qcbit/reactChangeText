@@ -4,7 +4,8 @@ class FontChooser extends React.Component {
 
 		this.state = {hidden: true, 
                   bold: false, 
-                  fontSize: this.props.size};
+                  fontSize: this.props.size,
+									fontColor: 'black'};
 	}
 
 	showControls() {
@@ -19,12 +20,14 @@ class FontChooser extends React.Component {
 		var size = ((Number(this.state.fontSize) - 1) >= this.props.min) ?
 			Number(this.state.fontSize) - 1 : this.props.min;
 		this.setState({fontSize: size});
+		this.setState( {fontColor: size == this.props.min ? 'red': 'black'} );
 	}
 
 	increaseFont() {
 		var size = ((Number(this.state.fontSize) + 1) <= this.props.max) ?
 			Number(this.state.fontSize) + 1 : this.props.max;
 		this.setState({fontSize: size});
+		this.setState( {fontColor: size == this.props.max ? 'red': 'black'} );
 	}
 	
 	reset() {
@@ -33,8 +36,6 @@ class FontChooser extends React.Component {
 
 	render() {
 		var weight = this.state.bold ? 'bold' : 'normal';
-		var color = (this.state.fontSize == this.props.min || 
-								 this.state.fontSize == this.props.max) ? 'red':'black';
 		return ( 
 			<div>
 			<input type = "checkbox" id = "boldCheckbox" hidden = {this.state.hidden} 
@@ -42,14 +43,14 @@ class FontChooser extends React.Component {
 			<button id = "decreaseButton" hidden = {this.state.hidden} 
 				onClick = {this.decreaseFont.bind(this)}> - </button>
 			<span id = "fontSizeSpan" hidden = {this.state.hidden} 
+				style = {{color:this.state.fontColor}}
 				onDoubleClick = {this.reset.bind(this)}> {this.state.fontSize}</span> 
 			<button id = "increaseButton" hidden = {this.state.hidden}
 				onClick = {this.increaseFont.bind(this)} > + < /button> 
 			<span id = "textSpan" onClick = {this.showControls.bind(this)}
 				style = { {
 					fontWeight: weight,
-					fontSize: this.state.fontSize,
-					color: color
+					fontSize: this.state.fontSize
 				} } > {this.props.text} < /span> 
 			< /div >
 		);
