@@ -9,6 +9,9 @@ class FontChooser extends React.Component {
 		/*
 		this.print();
 		*/
+		if (this.state.bold){
+			document.getElementById('boldCheckbox').click();
+		}
 	}
 	
 	print() {
