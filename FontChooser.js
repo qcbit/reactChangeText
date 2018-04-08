@@ -3,7 +3,7 @@ class FontChooser extends React.Component {
 		super(props);
 
 		this.state = {hidden: true, 
-									bold: this.props.bold == 'true' ? true:false, 
+									bold: this.props.bold === 'true' ? true:false, 
 									fontSize: Number(this.props.size), 
 									fontColor: 'black'};
 		/*
@@ -47,7 +47,7 @@ class FontChooser extends React.Component {
 	}
 
 	render() {
-		var weight = this.state.bold ? 'bold' : 'normal';
+		var weight = this.state.bold === true ? 'bold' : 'normal';
 		return ( 
 			<div>
 			<input type = "checkbox" defaultChecked={this.state.bold} id = "boldCheckbox" hidden = {this.state.hidden} 
@@ -65,10 +65,7 @@ class FontChooser extends React.Component {
 				onClick = {this.increaseFont.bind(this)} > + < /button> 
 			<span id = "textSpan" onClick = {this.showControls.bind(this)}
 				onDoubleClick = {this.reset.bind(this)}
-				style = { {
-								 fontWeight: weight,
-								 fontSize: this.state.fontSize
-				} } > {this.props.text} < /span> 
+				style = {{fontWeight: weight, fontSize: this.state.fontSize}}> {this.props.text} </span> 
 			< /div >
 		);
 	}
