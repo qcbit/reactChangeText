@@ -4,7 +4,7 @@ class FontChooser extends React.Component {
 
 		this.state = {hidden: true, 
 									bold: this.props.bold == 'true' ? true:false, 
-									fontSize: this.props.size, 
+									fontSize: Number(this.props.size), 
 									fontColor: 'black'};
 		/*
 		this.print();
@@ -43,7 +43,7 @@ class FontChooser extends React.Component {
 	}
 	
 	reset() {
-		this.setState( {fontSize: this.props.size} );
+		this.setState( {fontSize: Number(this.props.size)} );
 	}
 
 	render() {
